@@ -1,4 +1,4 @@
-"""Build and persist the TF-IDF catalogue search index."""
+"""Build and persist the catalogue search index."""
 
 import pickle
 from pathlib import Path
@@ -15,19 +15,12 @@ CATALOGUE_FILE = INDEX_DIRECTORY / "catalogue.pkl"
 
 
 def save_search_index() -> None:
-    """Build and save the catalogue TF-IDF index.
-
-    Raises:
-        OSError: If the index files cannot be written.
-    """
+    """Build the search index from MySQL catalogue data and save it."""
     books = get_books()
 
     vectorizer, document_vectors = build_search_index(books)
 
-    INDEX_DIRECTORY.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
+    INDEX_DIRECTORY.mkdir(parents=True, exist_ok=True)
 
     with VECTORIZER_FILE.open("wb") as file:
         pickle.dump(vectorizer, file)
@@ -38,9 +31,8 @@ def save_search_index() -> None:
     with CATALOGUE_FILE.open("wb") as file:
         pickle.dump(books, file)
 
-    print("TF-IDF search index created successfully.")
-    print(f"Books indexed: {len(books)}")
-    print(f"Index directory: {INDEX_DIRECTORY}")
+    print(f"Indexed {len(books)} books.")
+    print(f"Index saved to: {INDEX_DIRECTORY}")
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from python_app.api.search_api import router as search_router
+from python_app.api.assistant_api import router as assistant_router
 
 app = FastAPI(
     title="Library AI Service",
@@ -9,6 +10,7 @@ app = FastAPI(
 
 
 app.include_router(search_router)
+app.include_router(assistant_router)
 
 
 @app.get("/health")

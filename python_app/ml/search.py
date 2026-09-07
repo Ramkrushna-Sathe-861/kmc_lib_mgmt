@@ -6,10 +6,13 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 
 SEARCH_FIELDS = [
-    "title",
-    "author",
+    "book_name",
+    "author_name",
     "publisher",
-    "ddc_number",
+    "genre",
+    "synopsis",
+    "dewey_class",
+    "subject_tags",
 ]
 
 

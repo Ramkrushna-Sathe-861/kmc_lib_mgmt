@@ -16,15 +16,7 @@ def search_catalogue_endpoint(
     query: str,
     top_k: int = 10,
 ) -> dict:
-    """Search the library catalogue.
-
-    Args:
-        query: Natural-language catalogue search query.
-        top_k: Maximum number of results to return.
-
-    Returns:
-        Search response containing ranked books.
-    """
+    """Search the library catalogue."""
     try:
         results = search_catalogue(
             query=query,

@@ -1,14 +1,34 @@
-"""Data access functions for the library catalogue."""
+"""Repository functions for library catalogue data."""
 
 import pandas as pd
 
-from python_app.data.real_data.data_store import get_library_data
+from python_app.database.mysql_connection import get_database_connection
 
 
 def get_books() -> pd.DataFrame:
-    """Return the library catalogue.
-
-    Returns:
-        DataFrame containing unique catalogue records.
+    """Fetch active books from the library catalogue."""
+    query = """
+        SELECT
+            book_id,
+            book_name,
+            author_name,
+            publisher,
+            isbn_no,
+            published_year,
+            genre,
+            pages,
+            book_language,
+            synopsis,
+            edition,
+            dewey_class,
+            subject_tags
+        FROM book_details
+        WHERE deleted_date IS NULL
     """
-    return get_library_data()["books"]
+
+    connection = get_database_connection()
+
+    try:
+        return pd.read_sql(query, connection)
+    finally:
+        connection.close()
