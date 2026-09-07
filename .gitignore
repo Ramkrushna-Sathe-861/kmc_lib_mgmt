@@ -61,3 +61,4 @@ Thumbs.db
 *.njsproj
 *.sln
 *.swp
+python_app/data/indexes/

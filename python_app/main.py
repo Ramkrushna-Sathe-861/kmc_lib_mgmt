@@ -1,10 +1,14 @@
 from fastapi import FastAPI
+from python_app.api.search_api import router as search_router
 
 app = FastAPI(
     title="Library AI Service",
     description="AI/ML service for Library Management System",
     version="1.0.0",
 )
+
+
+app.include_router(search_router)
 
 
 @app.get("/health")
