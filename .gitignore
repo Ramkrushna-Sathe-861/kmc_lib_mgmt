@@ -62,3 +62,4 @@ Thumbs.db
 *.sln
 *.swp
 python_app/data/indexes/
+python_app/data/real_data/datasetPublicLib.csv
